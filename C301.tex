@@ -1,0 +1,98 @@
+% This is the ADASS_template.tex LaTeX file, 19th Sep 2019.
+% It is based on the ASP general author template file, but modified to reflect the specific
+% requirements of the ADASS proceedings.
+% Copyright 2014, Astronomical Society of the Pacific Conference Series
+% Revision:  14 August 2014
+
+% To compile, at the command line positioned at this folder, type:
+% latex ADASS_template
+% latex ADASS_template
+% dvipdfm ADASS_template
+% This will create a file called ADASS_template.pdf
+
+\documentclass[11pt,twoside]{article}
+
+% Do NOT use ANY packages other than asp2014. 
+\usepackage{asp2014}
+
+\aspSuppressVolSlug
+\resetcounters
+
+% References must all use BibTeX entries in a .bibfile.
+% References must be cited in the text using \citet{} or \citep{}.
+% Do not use \cite{}.
+% See ManuscriptInstructions.pdf for more details
+\bibliographystyle{asp2014}
+
+% The ``markboth'' line sets up the running heads for the paper.
+% 1 author: "Surname"
+% 2 authors: "Surname1 and Surname2"
+% 3 authors: "Surname1, Surname2, and Surname3"
+% >3 authors: "Surname1 et al."
+% Replace ``Short Title'' with the actual paper title, shortened if necessary.
+% Use mixed case type for the shortened title
+% Ensure shortened title does not cause an overfull hbox LaTeX error
+% See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
+\markboth{Sick}{UX for Docs: Documentation Engineering at Rubin}
+
+\begin{document}
+
+\title{UX for Docs: Documentation Engineering at Rubin}
+
+% Note the position of the comma between the author name and the 
+% affiliation number.
+% Authors surnames should come after first names or initials, eg John Smith, or J. Smith.
+% Author names should be separated by commas.
+% The final author should be preceded by "and".
+% Affiliations should not be repeated across multiple \affil commands. If several
+% authors share an affiliation this should be in a single \affil which can then
+% be referenced for several author names. If only one affiliation, no footnotes are needed.
+% See ManuscriptInstructions.pdf and ASP's manual2010.pdf 3.1.4 for more details
+\author{Jonathan Sick,$^1$}
+\affil{$^1$J.Sick Codes Inc., Penetanguishene, Ontario, Canada; \email{jonathan@jsick.codes}}
+
+% This section is for ADS Processing.  There must be one line per author. paperauthor has 9 arguments.
+\paperauthor{Jonathan Sick}{jonathan@jsick.codes}{0000-0003-3001-676X}{J.Sick Codes Inc.}{}{Penetanguishene}{Ontario}{L9M 1Z6}{Canada}
+
+% There should be one \aindex line (commented out) for each author. These are used to
+% build up the author index for the Proceedings. The surname must come first, followed by
+% initials. Note the use of ~ before each initial to control spacing.
+% The \author entries (see above) have surname last. These \aindex entries have
+% surname first.
+% The Aindex.py command willl create them for you after you have constructed the \author
+% The first entry should be the first author, for bold-facing the author index page-reference
+
+%\aindex{FistAuthor1,~S.~A.}
+%\aindex{Author2,~S.~B.}
+%\aindex{Author3,~S.}
+
+
+\begin{abstract}
+At Rubin Data Management we set out early in construction to create a healthy documentation culture. In order to provide a good UX for documentation contributors, we developed a documentation infrastructure (now also used by the NASA SPHEREx project) that values low-friction documentation creation and guaranteed-accurate documentation techniques. By using development tools such as GitHub Actions, Slack bots and Jupyter Notebooks, we are battling successfully the traditional view of documentation as the chore of last resort for both writers and readers.
+\end{abstract}
+
+% These lines show examples of subject index entries. At this stage these have to commented
+% out, and need to be on separate lines. Eventually, they will be automatically uncommented
+% and used to generate entries in the Subject Index at the end of the Proceedings volume.
+% Don't leave these in! - replace them with ones relevant to your paper.
+%\ssindex{FOOBAR!conference!ADASS 2019}
+%\ssindex{FOOBAR!organisations!ASP}
+
+% These lines show examples of ASCL index entries. At this stage these have to commented
+% out, and need to be on separate lines. Eventually, they will be automatically uncommented
+% and used to generate entries in the ASCL Index at the end of the Proceedings volume.
+% The ascl.py command will scan your paper on possible code names.
+% Don't leave these in! - replace them with ones relevant to your paper.
+%\ooindex{FOOBAR, ascl:1101.010}
+
+
+
+\acknowledgements This material or work is supported in part by the National Science Foundation through Cooperative Agreement AST-1258333 and Cooperative Support Agreement AST1836783 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No. DE-AC02-76SF00515 with the SLAC National Accelerator Laboratory managed by Stanford University.
+
+
+\bibliography{C301}  % For BibTex
+
+% if we have space left, we might add a conference photograph here. Leave commented for now.
+% \bookpartphoto[width=1.0\textwidth]{foobar.eps}{FooBar Photo (Photo: Any Photographer)}
+
+\end{document}
