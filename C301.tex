@@ -87,6 +87,45 @@ By using development tools such as GitHub Actions, Slack bots and Jupyter Notebo
 % Don't leave these in! - replace them with ones relevant to your paper.
 %\ooindex{FOOBAR, ascl:1101.010}
 
+\section{Docs like code}
+
+% - Enable the team to write Docs
+% - Docs like code fits our team's workflow.
+% - Reference Docs
+% - Exploration of new technologies
+
+\section{Documentation deployment}
+
+% Automatic deployment
+% Features beyond read the docs
+
+\section{Templates}
+
+Initial project set up is an impediment to docs-like-code projects.
+Not only do documentation projects require boilerplate infrastructure files that are outside the scope of contributors, they may also require configuration with outside systems like GitHub and web hosting that requires expert knowledge and permissions.
+Templates mitigate this challenge so that any contributor can start a project without deep documentation platform expertise.
+
+Rubin maintains templates for all types of software and documentation projects in a single repository.
+The template system is built upon Cookiecutter, augmented with our own Templatekit package.
+An example of each template is rendered into the repository, which provides a useful documentation reference for maintainers of projects.
+
+By integrating templates with a Slack bot, templates are accessible to anyone in the Rubin organization.
+Within Slack, a developer can configure values for a template, and the bot provisions the source repository, renders the template into it, and performs expert configuration on behalf of the developer (for example, registration with the documentation deployment system).
+With this system, a team member is able to start a new code or documentation project and have it published to the web in a few minutes.
+
+It is important to reduce the boilerplate code footprint in templates since any code can become technical debt.
+We have had success in refactoring continuous integration and deployment workflows with GitHub Action's reusable workflows and custom actions.
+Such works become centrally maintainable, and updates to deployment workflows often don't require any change in individual projects.
+
+\section{Documentation hub}
+
+\section{Developer documentation}
+
+\section{Project configuration}
+
+\section{Technotes}
+
+\section{Conclusions}
 
 
 \acknowledgements This material or work is supported in part by the National Science Foundation through Cooperative Agreement AST-1258333 and Cooperative Support Agreement AST1836783 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No. DE-AC02-76SF00515 with the SLAC National Accelerator Laboratory managed by Stanford University.
