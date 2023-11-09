@@ -119,6 +119,20 @@ Such works become centrally maintainable, and updates to deployment workflows of
 
 \section{Documentation hub}
 
+The documentation deployment system enables us to have a large number of documentation sites.
+The Rubin technical documentation hub provides a nexus for discovering content.
+The documentation hub uses Algolia as its backend store.
+Algolia provides full-text search, as well as filtering on metadata facets and sorting.
+Additionally, Algolia provides a React Instantsearch library that substantially helped in creating the search front-end.
+
+A key challenge in maintaining a documentation portal is ensuring that it remains up to date with the latest documentation content.
+Rather than manually curating the portal, documentation updates are pushed to the portal on each update, and each documentation site also exports its own machine-readable metadata.
+Our documentation crawling service, Ook, receives push events from updates on the documentation platform.
+When it indexes content, it uses the metadata presented in that documentation to classify and sort the content.
+The result is that documentation is curated from the bottom-up, and metadata curation is the realm of responsibility of individual teams for their documentation projects.
+
+As of writing, the Algolia full-text search only includes documents hosted on lsst.io, but we intent to begin including multi-page guides and event documentation content from other platforms in the near future.
+
 \section{Developer documentation}
 
 \section{Project configuration}
