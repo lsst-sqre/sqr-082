@@ -1,0 +1,7 @@
+{
+  "[latex]": {
+    "editor.wordWrap": "on"
+  },
+  "workbench.panel.defaultLocation": "bottom",
+  "gitlens.currentLine.enabled": false
+}
