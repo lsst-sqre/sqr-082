@@ -143,6 +143,14 @@ In the Developer Guide, we also document \emph{how} to write documentation, such
 
 \section{Project configuration}
 
+Documentation tools like Sphinx can be overwhelming a casual documentation contributor to set up well.
+Not only does Sphinx have a large number of configurations, but it also has an even more expansive ecosystem of extensions.
+To alleviate this concern from individual projects, and also promote standardization across all our documentation projects, Rubin provides a pip-installable package for our Sphinx configuration, extension dependencies, custom extensions, and theming.
+With a configuration module base, the conf.py files for individual projects is reduced to a single single.\footnote{This approach of providing an importable Sphinx configuration base is inspired by Astropy.}
+The configuration system uses a TOML file to facilitate a simplified framework for per-project configurations.
+
+% Whatever you abstract, you also own
+
 \section{Technotes}
 
 \section{Conclusions}
