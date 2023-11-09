@@ -153,6 +153,15 @@ The configuration system uses a TOML file to facilitate a simplified framework f
 
 \section{Technotes}
 
+The documentation platform can be used for content beyond product or project documentation.
+At Rubin Observatory, we've developed a notion of ``technotes'' as single-page websites that are deployed from their own GitHub repositories.
+Technotes can be used for a wide range of purposes, from architectural design proposals, to research reports, and test reports.
+Technotes solve the problem of making internal communications consistent and discoverable.
+Rather than being in wiki, personal Google Docs, email, or Slack, technotes are indexed by the documentation portal.
+Being websites, technotes are also available to the astronomy community, and we intend to make this content indexable with ADS.
+
+We are now providing a Python package called \texttt{technote} that provides Sphinx theme extensions, and configurations that enable Sphinx generate these single-page articles.
+
 \section{Conclusions}
 
 
