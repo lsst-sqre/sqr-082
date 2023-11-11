@@ -150,6 +150,7 @@ It is important to reduce the boilerplate code footprint in templates since any 
 We have had success in refactoring continuous integration and deployment workflows with GitHub Action's reusable workflows and custom actions.
 Such works become centrally maintainable, and updates to deployment workflows often don't require any change in individual projects.
 
+\label{sec:hub}
 \section{Documentation hub}
 
 The documentation deployment system enables us to have a large number of documentation sites.
@@ -184,6 +185,7 @@ The configuration system uses a TOML file to facilitate a simplified framework f
 
 % Whatever you abstract, you also own
 
+\label{sec:technotes}
 \section{Technotes}
 
 The documentation platform can be used for content beyond product or project documentation.
@@ -193,7 +195,15 @@ Technotes solve the problem of making internal communications consistent and dis
 Rather than being in wiki, personal Google Docs, email, or Slack, technotes are indexed by the documentation portal.
 Being websites, technotes are also available to the astronomy community, and we intend to make this content indexable with ADS.
 
-We are now providing a Python package called \texttt{technote} that provides Sphinx theme extensions, and configurations that enable Sphinx generate these single-page articles.
+We are now providing a Python package called \texttt{technote} that provides Sphinx theme extensions, and configurations that enable Sphinx to generate these single-page articles.
+Rubin's Documenteer builds upon this generic technote package for our specific branding requirements.
+LaTeX is also popular within Rubin Observatory.
+To accommodate PDF documents, we created a package called \texttt{Lander} that generates an HTML wrapper around any PDF iframe.
+\texttt{Lander} introspects the LaTeX source as well as the repository context to build a metadata set that not only populates the HTML landing page, but also yields machine-readable metadata.
+The machine-readable metadata exported by both \texttt{Technote} and \texttt{Lander} allows documents to self-curate when indexed into the documentation hub by \texttt{Ook} (see \ref{sec:hub}).
+
+The Rubin technote system originated to meet the needs of the Data Management subsystem, but it became adopted ubiquitously across the project with over 800 technote documents being published to date.
+This has demonstrated how a refined developer experience helps the team do the right thing and write durable documentation, rather than leave important information to Slack chats, email, and other personal silos.
 
 \section{Conclusions}
 
