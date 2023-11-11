@@ -68,9 +68,14 @@
 
 
 \begin{abstract}
-At Rubin Data Management we set out early in construction to create a healthy documentation culture.
-In order to provide a good UX for documentation contributors, we developed a documentation infrastructure (now also used by the NASA SPHEREx project) that values low-friction documentation creation and guaranteed-accurate documentation techniques.
-By using development tools such as GitHub Actions, Slack bots and Jupyter Notebooks, we are battling successfully the traditional view of documentation as the chore of last resort for both writers and readers.
+At Rubin Data Management, we set out early in construction to create a healthy documentation culture.
+In order to provide a good UX for documentation contributors, we developed a documentation platform that values low-friction documentation creation and guaranteed-accurate documentation techniques.
+The basis is docs-like-code, with a versioned documentation hosting system that deploys documentation as a regular practice of merging, tagging, and making pull requests in a Git repository.
+With automated templating, documentation projects are fast for anyone to start-up.
+Documentation configuration and generation packages absorb complexity from authors.
+A documentation portal updates automatically when content is pushed, and automatically curated on the basis of metadata published by each project.
+This approach is used beyond code documentation, with a technical note system that enables developers to communicate systematically and out of the silos of individual teams.
+% By using development tools such as GitHub Actions, Slack bots and Jupyter Notebooks, we are battling successfully the traditional view of documentation as the chore of last resort for both writers and readers.
 \end{abstract}
 
 % These lines show examples of subject index entries. At this stage these have to commented
@@ -96,16 +101,15 @@ By using development tools such as GitHub Actions, Slack bots and Jupyter Notebo
 
 To create a documentation platform that is appealing for our team to contribute to, we prioritized the developer experience.
 \emph{Developer experience}, related to user experience, reflects how easy it is perform tasks and make contributions to a system (our system being the documentation set).
-Although there are many valid frameworks for creating and publishing documentation, such as Wikis and PDF-centric document archives, at Rubin we were attracted to the framework of \emph{docs-like-code}.
-% TODO Anne Gentle
+Although there are many valid frameworks for creating and publishing documentation, such as Wikis and PDF-centric document archives, at Rubin we were attracted to the \emph{docs-like-code} \citep{Gentle2022} framework.
 It treats documentation as plain text files in version-controlled repositories (often the same repositories as related codebases) and published continuously to the web with same infrastructure that typically builds and tests software.
 As a software development organization, particularly within the Data Management subsystem, a docs-like-code approach offers the best developer experience because it fits into our existing development workflows.
-Code editors, GitHub Pull requests, and Git branches and tags work equally well for code development as they do for docs development.
+Code editors, GitHub pull requests, and Git branches and tags work equally well for code development as they do for docs development.
 
 We have found benefits of treating docs-like-code beyond the streamlined workflow.
 Since code repositories or other API-accessible systems contain the source-of-truth for many of the things we document, a docs-like-code framework facilitates building reference documentation directly from that source-of-truth.
-This is commonly done for building Python API documentation, but at Rubin we have also build custom reference generators for our Kubernetes deployments (which are deployed from a GitHub repository), pipelines, and services interfaces (using FastAPI where the data models for endpoints not only validate requests and responses, but also yield OpenAPI documentation).
-A docs-like-code system also encourages the development of tooling (which is discussed in this work), and we have taken the opportunity to use the documentation platform as a low-risk testbed for new technolgies.
+This is commonly done for building Python API documentation, but at Rubin we have also build custom reference generators for our Kubernetes deployments (which are deployed from a GitHub repository, \url{https://phalanx.lsst.io}), pipelines, and services interfaces (using FastAPI where the data models for endpoints not only validate requests and responses, but also yield OpenAPI documentation).
+A docs-like-code system also encourages the development of tooling (which is discussed in this work), and we have taken the opportunity to use the documentation platform as a low-risk testbed for new technologies.
 Rubin's documentation platform has proven technologies like Kubernetes and Argo CD GitOps, and developed expertise and code libraries around Python libraries and services and Kafka event streaming that have been adopted throughout Rubin for mission-critical applications.
 
 \section{Documentation deployment}
@@ -114,7 +118,7 @@ Rubin's documentation platform has proven technologies like Kubernetes and Argo 
 % Features beyond read the docs
 
 At Rubin, we created our own documentation deployment system, \textit{LSST the Docs}, to deploy and host our documentation.
-This platform is designed so that documentation deployments happen automatically in the course of developing a Git repository.
+This platform is designed so that documentation deployments happen automatically in the course of developing a Git repository, without any extra effort from the developer.
 Each documentation projects is hosted at its own subdomain of \texttt{lsst.io}.
 By default, when a project has changes merged to the default branch, new documentation content is pushed to this root URL.
 When a branch or tag is pushed, corresponding documentation is published to a \texttt{/v/*/} subpath of that domain.
@@ -160,8 +164,8 @@ As of writing, the Algolia full-text search only includes documents hosted on ls
 Documentation is an essential ingredient of good developer experience.
 Rubin Observatory Data Management maintains a developer guide to document and provide standards for all aspects of contributing to the Rubin Observatory codebases.
 With respect to writing documentation, the Rubin Developer Guide provides technical guidance on the documentation tools and markup syntaxes.
-In the Developer Guide, we also document \emph{how} to write documentation, such as the content style and content patterns (topic types in the topic-based documentation framework).
-% TODO cite baker
+In the Developer Guide, we also document \emph{how} to write documentation, such as the content style and content patterns.
+% TODO cite baker if possible
 
 \section{Project configuration}
 
