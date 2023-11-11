@@ -117,13 +117,20 @@ Rubin's documentation platform has proven technologies like Kubernetes and Argo 
 % Automatic deployment
 % Features beyond read the docs
 
-At Rubin, we created our own documentation deployment system, \textit{LSST the Docs}, to deploy and host our documentation.
+At Rubin, we created our own documentation deployment system, \textit{LSST the Docs} \citep{SQR-006}, to deploy and host our documentation.
 This platform is designed so that documentation deployments happen automatically in the course of developing a Git repository, without any extra effort from the developer.
 Each documentation projects is hosted at its own subdomain of \texttt{lsst.io}.
 By default, when a project has changes merged to the default branch, new documentation content is pushed to this root URL.
 When a branch or tag is pushed, corresponding documentation is published to a \texttt{/v/*/} subpath of that domain.
 For branches, pull requests can reference this documentation as a preview.
 For tags, this documentation becomes a permalink for that version of the docs.
+
+\textit{LSST the Docs} is patterned after the existing Read the Docs service, but meets additional requirements.
+Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins platforms.
+Documentation for the LSST Science Pipelines can only be be built in the bespoke Jenkins environment.
+
+LSST the Docs is designed to be serverless from the end-users perspective, although an API service does coordinate documentation deployments from CI/CD systems.
+All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic to those S3 resources.
 
 \section{Templates}
 
@@ -180,7 +187,7 @@ The configuration system uses a TOML file to facilitate a simplified framework f
 \section{Technotes}
 
 The documentation platform can be used for content beyond product or project documentation.
-At Rubin Observatory, we've developed a notion of ``technotes'' as single-page websites that are deployed from their own GitHub repositories.
+At Rubin Observatory, we've developed a notion of ``technotes'' as single-page websites that are deployed from their own GitHub repositories \citep{SQR-000}.
 Technotes can be used for a wide range of purposes, from architectural design proposals, to research reports, and test reports.
 Technotes solve the problem of making internal communications consistent and discoverable.
 Rather than being in wiki, personal Google Docs, email, or Slack, technotes are indexed by the documentation portal.
