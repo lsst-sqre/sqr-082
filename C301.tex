@@ -48,8 +48,8 @@
 % authors share an affiliation this should be in a single \affil which can then
 % be referenced for several author names. If only one affiliation, no footnotes are needed.
 % See ManuscriptInstructions.pdf and ASP's manual2010.pdf 3.1.4 for more details
-\author{Jonathan Sick,$^1$}
-\affil{$^1$J.Sick Codes Inc., Penetanguishene, Ontario, Canada; \email{jonathan@jsick.codes}}
+\author{Jonathan Sick}
+\affil{J.Sick Codes Inc., Penetanguishene, Ontario, Canada; \email{jonathan@jsick.codes}}
 
 % This section is for ADS Processing.  There must be one line per author. paperauthor has 9 arguments.
 \paperauthor{Jonathan Sick}{jonathan@jsick.codes}{0000-0003-3001-676X}{J.Sick Codes Inc.}{}{Penetanguishene}{Ontario}{L9M 1Z6}{Canada}
@@ -73,8 +73,8 @@ In order to provide a good UX for documentation contributors, we developed a doc
 The basis is docs-like-code, with a versioned documentation hosting system that deploys documentation as a regular practice of merging, tagging, and making pull requests in a Git repository.
 With automated templating, documentation projects are fast for anyone to start-up.
 Documentation configuration and generation packages absorb complexity from authors.
-A documentation portal updates automatically when content is pushed, and automatically curated on the basis of metadata published by each project.
-This approach is used beyond code documentation, with a technical note system that enables developers to communicate systematically and out of the silos of individual teams.
+A documentation hub updates automatically when content is pushed, and is automatically curated on the basis of metadata published by each project.
+This approach extends beyond code documentation, with a technical note system that enables developers to communicate efficiently across teams and the astronomy community.
 % By using development tools such as GitHub Actions, Slack bots and Jupyter Notebooks, we are battling successfully the traditional view of documentation as the chore of last resort for both writers and readers.
 \end{abstract}
 
@@ -82,15 +82,14 @@ This approach is used beyond code documentation, with a technical note system th
 % out, and need to be on separate lines. Eventually, they will be automatically uncommented
 % and used to generate entries in the Subject Index at the end of the Proceedings volume.
 % Don't leave these in! - replace them with ones relevant to your paper.
-%\ssindex{FOOBAR!conference!ADASS 2019}
-%\ssindex{FOOBAR!organisations!ASP}
+
+% \ssindex{observatories!ground-based!Rubin}
 
 % These lines show examples of ASCL index entries. At this stage these have to commented
 % out, and need to be on separate lines. Eventually, they will be automatically uncommented
 % and used to generate entries in the ASCL Index at the end of the Proceedings volume.
 % The ascl.py command will scan your paper on possible code names.
 % Don't leave these in! - replace them with ones relevant to your paper.
-%\ooindex{FOOBAR, ascl:1101.010}
 
 \section{Docs like code}
 
@@ -99,18 +98,20 @@ This approach is used beyond code documentation, with a technical note system th
 % - Reference Docs
 % - Exploration of new technologies
 
-To create a documentation platform that is appealing for our team to contribute to, we prioritized the developer experience.
-\emph{Developer experience}, related to user experience, reflects how easy it is perform tasks and make contributions to a system (our system being the documentation set).
-Although there are many valid frameworks for creating and publishing documentation, such as Wikis and PDF-centric document archives, at Rubin we were attracted to the \emph{docs-like-code} \citep{Gentle2022} framework.
+At Rubin Observatory, every team member participates in documentation.
+To enable anyone to be a successful documentation, we invested in creating a documentation platform that is simple and convenient to author and publish in.
+Although there are many valid frameworks for creating and publishing documentation, at Rubin we were attracted to the \emph{docs-like-code} \citep{Gentle2022} framework.
 It treats documentation as plain text files in version-controlled repositories (often the same repositories as related codebases) and published continuously to the web with same infrastructure that typically builds and tests software.
 As a software development organization, particularly within the Data Management subsystem, a docs-like-code approach offers the best developer experience because it fits into our existing development workflows.
 Code editors, GitHub pull requests, and Git branches and tags work equally well for code development as they do for docs development.
 
 We have found benefits of treating docs-like-code beyond the streamlined workflow.
 Since code repositories or other API-accessible systems contain the source-of-truth for many of the things we document, a docs-like-code framework facilitates building reference documentation directly from that source-of-truth.
-This is commonly done for building Python API documentation, but at Rubin we have also build custom reference generators for our Kubernetes deployments (which are deployed from a GitHub repository, \url{https://phalanx.lsst.io}), pipelines, and services interfaces (using FastAPI where the data models for endpoints not only validate requests and responses, but also yield OpenAPI documentation).
-A docs-like-code system also encourages the development of tooling (which is discussed in this work), and we have taken the opportunity to use the documentation platform as a low-risk testbed for new technologies.
-Rubin's documentation platform has proven technologies like Kubernetes and Argo CD GitOps, and developed expertise and code libraries around Python libraries and services and Kafka event streaming that have been adopted throughout Rubin for mission-critical applications.
+This is commonly done for building Python API documentation.
+At Rubin, we have also built custom reference generators (for example, documentation for our Kubernetes deployments that are deployed from Git, \url{https://phalanx.lsst.io}).
+% , pipelines, and services interfaces (using FastAPI where the data models for endpoints not only validate requests and responses, but also yield OpenAPI documentation).
+A docs-like-code system also encourages the development of tooling (which is discussed in this work), and we have taken the opportunity to use the documentation platform as a low-risk testbed for new technologies like Kubernetes and GitOps, Kafka event streaming, and Python web service development patterns.
+This work describes the key components of the Rubin documentation platform, and their relationship to the overall user experience.
 
 \section{Documentation deployment}
 
@@ -118,8 +119,8 @@ Rubin's documentation platform has proven technologies like Kubernetes and Argo 
 % Features beyond read the docs
 
 At Rubin, we created our own documentation deployment system, \textit{LSST the Docs} \citep{SQR-006}, to deploy and host our documentation.
-This platform is designed so that documentation deployments happen automatically in the course of developing a Git repository, without any extra effort from the developer.
-Each documentation projects is hosted at its own subdomain of \texttt{lsst.io}.
+This system is designed so that documentation deployments happen automatically in the course of developing a Git repository, without any extra effort from the developer.
+Each documentation project is hosted at its own subdomain of \href{https://www.lsst.io}{lsst.io}.
 By default, when a project has changes merged to the default branch, new documentation content is pushed to this root URL.
 When a branch or tag is pushed, corresponding documentation is published to a \texttt{/v/*/} subpath of that domain.
 For branches, pull requests can reference this documentation as a preview.
@@ -127,22 +128,22 @@ For tags, this documentation becomes a permalink for that version of the docs.
 
 \textit{LSST the Docs} is patterned after the existing Read the Docs service, but meets additional requirements.
 Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins platforms.
-Documentation for the LSST Science Pipelines can only be be built in the bespoke Jenkins environment.
+For example, documentation for the LSST Science Pipelines can only be be built in the bespoke Jenkins environment.
 
-LSST the Docs is designed to be serverless from the end-users perspective, although an API service does coordinate documentation deployments from CI/CD systems.
-All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic to those S3 resources.
+LSST the Docs is designed to be serverless from the end-user's perspective.
+All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic from versioned URLs to those S3 resources.
 
 \section{Templates}
 
 Initial project set up is an impediment to docs-like-code projects.
-Not only do documentation projects require boilerplate infrastructure files that are outside the scope of contributors, they may also require configuration with outside systems like GitHub and web hosting that requires expert knowledge and permissions.
+Not only do documentation projects require boilerplate infrastructure files that are outside the expertise of contributors, they may also require configuration with outside systems like GitHub and web hosting that requires expert knowledge and permissions.
 Templates mitigate this challenge so that any contributor can start a project without deep documentation platform expertise.
 
-Rubin maintains templates for all types of software and documentation projects in a single repository.
-The template system is built upon Cookiecutter, augmented with our own Templatekit package.
+Rubin maintains templates for all types of software and documentation projects in a single repository (\url{https://github.com/lsst/templates}).
+The template system is built upon Cookiecutter, augmented with our own Templatekit package (\url{https://github.com/lsst-sqre/templatekit}).
 An example of each template is rendered into the repository, which provides a useful documentation reference for maintainers of projects.
 
-By integrating templates with a Slack bot, templates are accessible to anyone in the Rubin organization.
+By integrating templates with a Slack chatbot, templates are accessible to anyone in the Rubin organization.
 Within Slack, a developer can configure values for a template, and the bot provisions the source repository, renders the template into it, and performs expert configuration on behalf of the developer (for example, registration with the documentation deployment system).
 With this system, a team member is able to start a new code or documentation project and have it published to the web in a few minutes.
 
@@ -154,33 +155,32 @@ Such works become centrally maintainable, and updates to deployment workflows of
 \section{Documentation hub}
 
 The documentation deployment system enables us to have a large number of documentation sites.
-The Rubin technical documentation hub provides a nexus for discovering content.
+The Rubin technical documentation hub (\url{https://www.lsst.io/}) provides a nexus for discovering this content.
 The documentation hub uses Algolia as its backend store.
-Algolia provides full-text search, as well as filtering on metadata facets and sorting.
-Additionally, Algolia provides a React Instantsearch library that substantially helped in creating the search front-end.
+Algolia provides full-text search, as well as filtering on metadata facets.
+Additionally, Algolia provides a React component library that substantially simplified creating the search front-end.
 
 A key challenge in maintaining a documentation portal is ensuring that it remains up to date with the latest documentation content.
 Rather than manually curating the portal, documentation updates are pushed to the portal on each update, and each documentation site also exports its own machine-readable metadata.
-Our documentation crawling service, Ook, receives push events from updates on the documentation platform.
+Our documentation crawling service, Ook (\url{https://github.com/lsst-sqre/ook}), receives push events from updates on the documentation platform.
 When it indexes content, it uses the metadata presented in that documentation to classify and sort the content.
 The result is that documentation is curated from the bottom-up, and metadata curation is the realm of responsibility of individual teams for their documentation projects.
 
-As of writing, the Algolia full-text search only includes documents hosted on lsst.io, but we intent to begin including multi-page guides and event documentation content from other platforms in the near future.
+As of writing, the Algolia full-text search only includes documents hosted on \texttt{lsst.io}, but we intend to begin including multi-page guides and event documentation content from other platforms in the near future.
 
 \section{Developer documentation}
 
 Documentation is an essential ingredient of good developer experience.
-Rubin Observatory Data Management maintains a developer guide to document and provide standards for all aspects of contributing to the Rubin Observatory codebases.
+Rubin Observatory Data Management maintains a developer guide (\url{https://developer.lsst.io}) to document and provide standards for all aspects of contributing to the Rubin Observatory codebases.
 With respect to writing documentation, the Rubin Developer Guide provides technical guidance on the documentation tools and markup syntaxes.
 In the Developer Guide, we also document \emph{how} to write documentation, such as the content style and content patterns.
-% TODO cite baker if possible
 
 \section{Project configuration}
 
-Documentation tools like Sphinx can be overwhelming a casual documentation contributor to set up well.
+Documentation tools like Sphinx can be overwhelming for a casual documentation contributor to set up.
 Not only does Sphinx have a large number of configurations, but it also has an even more expansive ecosystem of extensions.
-To alleviate this concern from individual projects, and also promote standardization across all our documentation projects, Rubin provides a pip-installable package for our Sphinx configuration, extension dependencies, custom extensions, and theming.
-With a configuration module base, the conf.py files for individual projects is reduced to a single single.\footnote{This approach of providing an importable Sphinx configuration base is inspired by Astropy.}
+To alleviate this concern from individual projects, and also promote standardization across all our documentation projects, Rubin provides the Documenteer Python package (\url{https://documenteer.lsst.io}) for our Sphinx configuration, extension dependencies, custom extensions, and theming.
+With a configuration module base, the conf.py files for individual projects is reduced to a single single (this approach is inspired by sphinx-astropy, \citet{thomas_robitaille_2023_8015243}).
 The configuration system uses a TOML file to facilitate a simplified framework for per-project configurations.
 
 % Whatever you abstract, you also own
@@ -188,25 +188,26 @@ The configuration system uses a TOML file to facilitate a simplified framework f
 \label{sec:technotes}
 \section{Technotes}
 
-The documentation platform can be used for content beyond product or project documentation.
-At Rubin Observatory, we've developed a notion of ``technotes'' as single-page websites that are deployed from their own GitHub repositories \citep{SQR-000}.
+Looking beyond project documentation, we have developed a notion of ``technotes'' as single-page websites that are deployed from their own GitHub repositories \citep{SQR-000}.
 Technotes can be used for a wide range of purposes, from architectural design proposals, to research reports, and test reports.
 Technotes solve the problem of making internal communications consistent and discoverable.
 Rather than being in wiki, personal Google Docs, email, or Slack, technotes are indexed by the documentation portal.
 Being websites, technotes are also available to the astronomy community, and we intend to make this content indexable with ADS.
 
-We are now providing a Python package called \texttt{technote} that provides Sphinx theme extensions, and configurations that enable Sphinx to generate these single-page articles.
-Rubin's Documenteer builds upon this generic technote package for our specific branding requirements.
+We are now providing a Python package called \texttt{Technote} (https://github.com/lsst-sqre/technote) that provides Sphinx theme extensions, and configurations that enable Sphinx to generate these single-page articles.
+% Rubin's Documenteer builds upon this generic \texttt{Technote} package for our specific branding requirements.
 LaTeX is also popular within Rubin Observatory.
-To accommodate PDF documents, we created a package called \texttt{Lander} that generates an HTML wrapper around any PDF iframe.
+To accomodate LaTeX documents we created a package called \texttt{Lander} (https://github.com/lsst-sqre/lander) that generates an HTML wrapper around any PDF in an iframe.
 \texttt{Lander} introspects the LaTeX source as well as the repository context to build a metadata set that not only populates the HTML landing page, but also yields machine-readable metadata.
 The machine-readable metadata exported by both \texttt{Technote} and \texttt{Lander} allows documents to self-curate when indexed into the documentation hub by \texttt{Ook} (see \ref{sec:hub}).
 
 The Rubin technote system originated to meet the needs of the Data Management subsystem, but it became adopted ubiquitously across the project with over 800 technote documents being published to date.
-This has demonstrated how a refined developer experience helps the team do the right thing and write durable documentation, rather than leave important information to Slack chats, email, and other personal silos.
+This demonstrated how a refined developer experience helps the team do the right thing and write durable, findable, documentation, outside of personal silos.
 
-\section{Conclusions}
+\section{Towards a generic documentation platform infrastructure}
 
+% The Rubin documentation platform is already 100\% open source.
+We are now working towards refining these components, particularly LSST the Docs, Technote, and Lander, as generic software that can be built upon with plugins or used as software-as-a-service by other organizations pursuing a docs-like-code journey.
 
 \acknowledgements This material or work is supported in part by the National Science Foundation through Cooperative Agreement AST-1258333 and Cooperative Support Agreement AST1836783 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No. DE-AC02-76SF00515 with the SLAC National Accelerator Laboratory managed by Stanford University.
 
