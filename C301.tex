@@ -181,7 +181,7 @@ In the Developer Guide, we also document \emph{how} to write documentation, such
 Documentation tools like Sphinx (\url{https://www.sphinx-doc.org}) can be overwhelming for a casual documentation contributor to set up.
 Not only does Sphinx have a large number of configurations, but it also has an even more expansive ecosystem of extensions.
 To alleviate this concern from individual projects, and also promote standardization across all our documentation projects, Rubin provides the \textit{Documenteer} Python package (\url{https://documenteer.lsst.io}) for our Sphinx configuration, extension dependencies, custom extensions, and theming.
-With a configuration module base, the \texttt{conf.py} files for individual projects is reduced to a single single (this approach is inspired by sphinx-astropy, \citet{thomas_robitaille_2023_8015243}).
+With a configuration module base, the \texttt{conf.py} files for individual projects is reduced to a single line (this approach is inspired by sphinx-astropy, \citet{thomas_robitaille_2023_8015243}).
 The configuration system uses a TOML file to facilitate a simplified framework for per-project configurations.
 
 % Whatever you abstract, you also own
@@ -195,7 +195,7 @@ Technotes solve the problem of making internal communications consistent and dis
 Rather than being in wiki, personal Google Docs, email, or Slack, technotes are indexed by the documentation hub.
 Being websites, technotes are also available to the astronomy community, and we intend to make this content indexable with ADS.
 
-We are now providing a Python package called \textit{Technote} (\url{https://github.com/lsst-sqre/technote}) that provides Sphinx theme extensions, and configurations that enable Sphinx to generate these single-page articles.
+We are now providing a Python package called \textit{Technote} (\url{https://github.com/lsst-sqre/technote}) that provides Sphinx theme extensions and configurations that enable Sphinx to generate these single-page articles.
 LaTeX is also popular within Rubin Observatory.
 To accommodate LaTeX documents, we created a package called \textit{Lander} (\url{https://github.com/lsst-sqre/lander}) that generates an HTML wrapper around any PDF in an iframe.
 \textit{Lander} introspects the LaTeX source as well as the repository context to build a metadata set that not only populates the HTML landing page, but also yields machine-readable metadata.
