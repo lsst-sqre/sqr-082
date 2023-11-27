@@ -38,4 +38,4 @@ jobs:
           LTD_PASSWORD: ${{ secrets.LTD_PASSWORD }}
           LTD_USERNAME: ${{ secrets.LTD_USERNAME }}
         run: |
-          lander --upload --pdf C301.pdf --ltd-product sqr-082 --handle SQR-082 --title "UX for Docs: Documentation Engineering at Rubin" --author "Jonathan Sick" --abstract "A talk about the UX of documentation engineering at Rubin Observatory contributed to ADASS 2023."
+          lander --upload --pdf C301.pdf --ltd-product sqr-082 --handle SQR-082 --title "The Documentation Developer Experience: Documentation Engineering at the Vera C. Rubin Observatory" --author "Jonathan Sick" --author "Frossie Economou" --abstract "A talk about the UX of documentation engineering at Rubin Observatory contributed to ADASS 2023."

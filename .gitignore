@@ -8,3 +8,7 @@
 *.xdv
 *.dvi
 *.pdf
+C301.html
+C301.xml
+LaTeXML.css
+ltx-article.css
