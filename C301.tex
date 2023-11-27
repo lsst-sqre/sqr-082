@@ -106,7 +106,7 @@ This approach extends beyond code documentation, with a technical note system th
 At Rubin Observatory \citep{2019ApJ...873..111I}, every team member participates in documentation.
 To enable anyone to be a successful documentarian, we invested in creating a documentation platform that is simple and convenient to author and publish in.
 Although there are many valid frameworks for creating and publishing documentation, at Rubin we were attracted to the \emph{docs-like-code} \citep{Gentle2022} framework that handles documentation content as plain text files in version-controlled source repositories.
-As a software development organization, particularly within the Rubin Data Management subsystem, a docs-like-code approach offers the best developer experience because it fits into our existing development workflows.
+As a software development organization, particularly within the Rubin Data Management subsystem, a docs-like-code approach offers the best developer experience because it fits into our existing development workflows \citep{2018SPIE10707E..09J}.
 Code editors, GitHub pull requests, and Git branches and tags work equally well for code development as they do for docs development.
 
 We have found benefits of treating docs-like-code beyond the streamlined workflow.
@@ -131,7 +131,7 @@ For branches, pull requests can reference this documentation as a preview.
 For tags, this documentation becomes a permalink for that release's documentation.
 
 \textit{LSST the Docs} is patterned after Read the Docs (\url{https://readthedocs.com}), but meets additional requirements.
-Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins platform that builds documentation for the LSST Science Pipelines.
+Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins platform \citep{2018SPIE10707E..09J}.
 
 \textit{LSST the Docs} is designed to be serverless for user requests, and is therefore highly reliable.
 All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic from versioned URLs to those S3 resources.
@@ -167,7 +167,7 @@ Rather than manually curating the hub, documentation update notifications are pu
 Our crawling service, \textit{Ook} (\url{https://github.com/lsst-sqre/ook}), uses the metadata presented in documentation to classify and sort the content.
 The result is that documentation is curated from the bottom-up, and metadata curation is the responsibility realm of individual teams for their documentation projects.
 
-As of this writing, the Algolia full-text search only includes documents hosted on \texttt{lsst.io}, but we intend to begin including multi-page guides and even documentation content from other content repositories in the near future.
+% As of this writing, the Algolia full-text search only includes documents hosted on \texttt{lsst.io}, but we intend to begin including multi-page guides and even documentation content from other content repositories in the near future.
 
 \section{Developer documentation}
 
