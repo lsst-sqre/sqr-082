@@ -128,10 +128,10 @@ By default, when a project has changes merged to the default branch, new documen
 When a branch or tag is pushed, corresponding documentation is published to a \texttt{/v/*/} URL path of that domain.
 For branches, pull requests can reference this documentation as a preview.
 For tags, this documentation becomes a permalink for that release's documentation.
+The newest release tag can also become the default documentation, by configuration.
 
 \textit{LSST the Docs} is patterned after Read the Docs (\url{https://readthedocs.com}), but meets additional requirements.
-Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins platform \citep{2018SPIE10707E..09J}.
-
+Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins \citep{2018SPIE10707E..09J}.
 \textit{LSST the Docs} is designed to be serverless for user requests, and is therefore highly reliable.
 All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic from versioned URLs to those S3 resources.
 
@@ -145,9 +145,10 @@ Rubin maintains templates for all types of software and documentation projects i
 Built upon Cookiecutter (\url{https://github.com/cookiecutter/cookiecutter}), the system is augmented with \textit{Templatekit} (\url{https://github.com/lsst-sqre/templatekit}).
 An example of each template is rendered into the repository, which provides a useful documentation reference for maintainers of projects.
 
-Templates are integrated with a chatbot, so that within Slack, a developer configures values for a template.
+Templates are integrated with a chatbot.
+Within Slack, a developer configures values for a template.
 The bot then provisions the source repository, renders the template into it, and performs expert configuration on behalf of the developer (for example, registration with the documentation deployment system).
-With this system, a team member is able to start a new code or documentation project and have it published to the web in a few minutes.
+This system enables a team member is able to start a new code or documentation project and have it published to the web in a few minutes.
 
 It is important to reduce the boilerplate code footprint in templates since any code can become technical debt.
 We have had success in refactoring continuous integration and deployment workflows with GitHub Action's reusable workflows and custom actions.
