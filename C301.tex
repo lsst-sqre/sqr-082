@@ -50,7 +50,7 @@
 % See ManuscriptInstructions.pdf and ASP's manual2010.pdf 3.1.4 for more details
 \author{Jonathan Sick$^{1,2}$ and Frossie Economou$^2$}
 \affil{$^1$J.Sick Codes Inc., Penetanguishene, Ontario, Canada; \email{jonathan@jsick.codes}}
-\affil{$^1$Rubin Observatory, Tucson, AZ, USA}
+\affil{$^2$Rubin Observatory, Tucson, AZ, USA}
 
 % This section is for ADS Processing.  There must be one line per author. paperauthor has 9 arguments.
 \paperauthor{Jonathan Sick}{jonathan@jsick.codes}{0000-0003-3001-676X}{J.Sick Codes Inc.}{}{Penetanguishene}{Ontario}{L9M 1Z6}{Canada}
@@ -133,7 +133,7 @@ The newest release tag can also become the default documentation, by configurati
 \textit{LSST the Docs} is patterned after Read the Docs (\url{https://readthedocs.com}), but meets additional requirements.
 Read the Docs provides its own build environment, but \textit{LSST the Docs} is compatible with any existing CI/CD system, including GitHub Actions and our self-hosted Jenkins \citep{2018SPIE10707E..09J}.
 \textit{LSST the Docs} is designed to be serverless for user requests, and is therefore highly reliable.
-All documentation assets are stored in an S3 object store, and the Fastly CDN provides routes user traffic from versioned URLs to those S3 resources.
+All documentation assets are stored in an S3 object store, and the Fastly CDN routes user traffic from versioned URLs to those S3 resources.
 
 \section{Templates}
 
@@ -148,7 +148,7 @@ An example of each template is rendered into the repository, which provides a us
 Templates are integrated with a chatbot.
 Within Slack, a developer configures values for a template.
 The bot then provisions the source repository, renders the template into it, and performs expert configuration on behalf of the developer (for example, registration with the documentation deployment system).
-This system enables a team member is able to start a new code or documentation project and have it published to the web in a few minutes.
+This system enables a team member to start a new code or documentation project and have it published to the web in a few minutes.
 
 It is important to reduce the boilerplate code footprint in templates since any code can become technical debt.
 We have had success in refactoring continuous integration and deployment workflows with GitHub Action's reusable workflows and custom actions.
